@@ -6,6 +6,8 @@
  */
 
 module.exports = {
-	
+	saveConfig: function (req, res) {
+
+    }
 };
 
