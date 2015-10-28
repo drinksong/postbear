@@ -1,0 +1,36 @@
+/*body {*/
+	/*margin: 0;*/
+	/*padding: 0;*/
+	/*background-color: #eee;*/
+/*}*/
+
+/*.form-signin {*/
+	/*margin: 0 auto;*/
+	/*margin-top: 100px;*/
+	/*max-width: 400px;*/
+	/*/!*padding: 0 10px;*!/*/
+	/*border: 1px solid #fff;*/
+	/*border-radius: 25px;*/
+	/*background-color: #fff;*/
+/*}*/
+
+/*.form-signin h2 {*/
+	/*margin-top: 0;*/
+	/*padding: 10px 0;*/
+	/*border-top-left-radius: 25px;*/
+	/*border-top-right-radius: 25px;*/
+	/*text-align: center;*/
+	/*color: #fff;*/
+/*}*/
+
+/*.form-signin-group {*/
+	/*margin: 25px 0;*/
+/*}*/
+
+/*.form-signin-heading {*/
+	/*background-color: #829aa8;*/
+/*}*/
+
+/*.form-group {*/
+	/*padding: 0 10px;*/
+/*}*/
