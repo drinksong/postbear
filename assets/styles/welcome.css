@@ -1,0 +1,14 @@
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+#carousel {
+    margin-top: 50px;
+}
+
+.item {
+    height: 500px;
+}

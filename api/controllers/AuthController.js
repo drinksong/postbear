@@ -6,12 +6,12 @@
  */
 
 module.exports = {
-	processLogin: function (req, res) {
-		
-	},
-	
-	processRegister: function (req, res) {
-		
-	}
+    processLogin: function (req, res) {
+
+    },
+
+    processRegistry: function (req, res) {
+
+    }
 };
 

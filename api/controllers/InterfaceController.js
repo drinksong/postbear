@@ -115,5 +115,17 @@ module.exports = {
     //         }
     //     })
     // }
+
+    update: function (req, res) {
+        var id = req.param('id');
+        Interface.update({url: 'activation/f'}, {url: 'activation/a'}).where({id: 6}).exec(function (err, results) {
+            if (err) {
+                res.send({err: err});
+            }
+            else {
+                res.send(results);
+            }
+        });
+    }
 };
 

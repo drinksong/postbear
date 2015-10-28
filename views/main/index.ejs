@@ -20,7 +20,7 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid margin-top">
     <div class="row">
         <div class="col-sm-4 col-md-3 sidebar">
             <ul class="nav nav-sidebar">
@@ -34,11 +34,14 @@
             <section class="request">
                 <div class="request-types">
                     <ul class="nav nav-tabs" id="navTabs">
+                        <li>
+                            <a href="#create" aria-controls="create" data-toggle="tab">Create</a>
+                        </li>
                         <li class="active">
                             <a href="#retrieve" aria-controls="retrieve" data-toggle="tab">Retrieve</a>
                         </li>
                         <li>
-                            <a href="#create" aria-controls="create" data-toggle="tab">Create</a>
+                            <a href="#update" aria-controls="update" data-toggle="tab">Update</a>
                         </li>
                         <li>
                             <a href="#delete" aria-controls="delete" data-toggle="tab">Delete</a>
@@ -163,6 +166,61 @@
                         </div>
                     </div>
 
+                    <div id="update" class="tab-pane">
+                        <div class="create-container">
+                            <div class="form-group form-url">
+                                <label for="url" class="control-label">Url<span class="required">*</span></label><span class="err-msg"></span>
+                                <ul class="create-url">
+                                    <li class='url-item'>
+                                        <div class="form-inline form-width url-control">
+                                            <input type="text" class="form-control" placeholder="Home" id="url">
+                                            <button class="btn" id="addUrl">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            <button id="urlTooptip" class="btn" data-toggle="tooltip" title="No data" data-placement="right">Preview</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="form-group">
+                                <label for="author" class="control-label">Author</label>
+                                <input type="text" class="form-control form-width" id="author" value="songjunke" disabled>
+                            </div>
+                            <div class="form-group form-story">
+                                <label for="story" class="control-label">Story</label><span class="err-msg"></span>
+                                <input type="number" class="form-control form-width" id="story" placeholder="Story" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="control-label">Description</label>
+                                <textarea class="form-control form-width" id="description" placeholder="Description" rows="3"></textarea>
+                            </div>
+                            <div class="form-group form-parameter">
+                                <label for="description" class="control-label">Parameters</label><span class="err-msg"></span>
+                                <ul class="create-parameters">
+                                    <li class='parameters-item'>
+                                        <div class="form-inline form-width">
+                                            <input type="text" class="form-control" name="parameter" placeholder="Parameter">
+                                            <input type="text" class="form-control" name="description" placeholder="Description">
+                                            <button class="btn" id="add">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="form-group form-response">
+                                <label class="control-label">Response<span class="required">*</span></label><span class="err-msg"></span>
+                                <div class="create-editor-container" id="updateEditor"></div>
+                            </div>
+                        </div>
+
+                        <div class="request-actions">
+                            <div class="request-actions-primary">
+                                <button class="btn btn-primary" data-loading-text="Submit" id="updateSubmit">Update</button>
+                                <button class="btn btn-danger" id="updateCancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                     <div id="delete" class="tab-pane">delete</div>
 
                     <div id="other" class="tab-pane">other</div>

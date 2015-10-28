@@ -41,6 +41,13 @@ module.exports.routes = {
   
 '/': 'InterfaceController.index',
 
+'/welcome': {
+    view: 'home/welcome',
+    locals: {
+        layout: 'home/layout'
+    }
+},
+
 'get /login': {
     view: 'passport/login',
     locals: {
@@ -57,12 +64,13 @@ module.exports.routes = {
     }
 },
 
-'post /register': 'AuthController.processRegister',
+'post /register': 'AuthController.processRegistry',
 
 '/search': 'InterfaceController.search',
 
-'/create': 'InterfaceController.create'
+'/create': 'InterfaceController.create',
 
+'get /update': 'InterfaceController.update'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -72,5 +80,4 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-
 };

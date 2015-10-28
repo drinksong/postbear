@@ -1,0 +1,68 @@
+<% script("js/welcome.js") -%>
+<% stylesheet("styles/welcome.css") -%>
+<%-partial("header")%>
+
+<div id="carousel" class="carousel slide" data-ride="carousel">
+    <!-- 指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+    </ol>
+    <!-- 具体轮播的内容 -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="images/gray.png" width="100%" height="500px" alt="...">
+            <div class="carousel-caption">
+                <h1>保存项目的接口及配置变量</h1>
+                <br>
+                <p>Post Bear记录整个项目的接口及配置变量,以便自由修改和保存</p>
+                <br>
+                <br>
+                <button class="btn btn-primary btn-lg">开始体验</button>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="item">
+            <img src="images/gray.png" width="100%" height="500px" alt="...">
+            <div class="carousel-caption">
+                <h1>自动化接口测试</h1>
+                <br>
+                <p>自动测试接口,以便验证自己的代码是否准确地使用了接口</p>
+                <br>
+                <br>
+                <button class="btn btn-primary btn-lg">开始体验</button>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="item">
+            <img src="images/gray.png" width="100%" height="500px" alt="...">
+            <div class="carousel-caption">
+                <h1>接口变更提醒</h1>
+                <br>
+                <p>邮件提醒接口变化,节省沟通时间.接口关注人员会第一时间收到接口变动的通知,使自己的代码及时适应变化</p>
+                <br>
+                <br>
+                <button class="btn btn-primary btn-lg">开始体验</button>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- 轮播翻页按钮 -->
+    <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    </a>
+</div>
+<%-partial("footer")%>
