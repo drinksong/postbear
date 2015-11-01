@@ -48,21 +48,7 @@ module.exports.routes = {
     }
 },
 
-'get /login': {
-    view: 'passport/login',
-    locals: {
-        layout: 'passport/layout'
-    }
-},
-
-'post /register': 'AuthController.processLogin',
-
-'get /register': {
-    view: 'passport/register',
-    locals: {
-        layout: 'passport/layout'
-    }
-},
+'post /login': 'AuthController.processLogin',
 
 'post /register': 'AuthController.processRegistry',
 
