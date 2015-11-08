@@ -48,9 +48,11 @@ module.exports.routes = {
     }
 },
 
+'post /register': 'AuthController.processRegistry',
+
 'post /login': 'AuthController.processLogin',
 
-'post /register': 'AuthController.processRegistry',
+'post /logout': 'AuthController.processLogout',
 
 '/search': 'InterfaceController.search',
 

@@ -48,4 +48,10 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
+    '*': 'isAuthenticated',
+
+    AuthController: {
+        '*': true,
+        toRegister: 'userNotCreated'
+    }
 };

@@ -1,12 +1,10 @@
 /**
-* User.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
+* @file User.js
+* @author luodongyang@baidu.com
+* @date 2015-11-08
 */
 var bcrypt = require('bcrypt');
 module.exports = {
-
     attributes: {
         email: {
             type: 'email',
