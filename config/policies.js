@@ -52,6 +52,6 @@ module.exports.policies = {
 
     AuthController: {
         '*': true,
-        toRegister: 'userNotCreated'
+        processRegistry: 'userCreated'
     }
 };
