@@ -20,7 +20,7 @@
     </div>
 </nav>
 
-<div class="container-fluid margin-top">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-4 col-md-3 sidebar">
             <ul class="nav nav-sidebar">
@@ -34,17 +34,11 @@
             <section class="request">
                 <div class="request-types">
                     <ul class="nav nav-tabs" id="navTabs">
-                        <li>
-                            <a href="#create" aria-controls="create" data-toggle="tab">Create</a>
-                        </li>
                         <li class="active">
                             <a href="#retrieve" aria-controls="retrieve" data-toggle="tab">Retrieve</a>
                         </li>
                         <li>
-                            <a href="#update" aria-controls="update" data-toggle="tab">Update</a>
-                        </li>
-                        <li>
-                            <a href="#delete" aria-controls="delete" data-toggle="tab">Delete</a>
+                            <a href="#create" aria-controls="create" data-toggle="tab">Create</a>
                         </li>
                         <li>
                             <a href="#other" aria-controls="other" data-toggle="tab">Other</a>
@@ -85,19 +79,40 @@
                             <div class="response-waiting-container" style="display:none" id="waiting">
                                 <h3>Loading...</h3>
                             </div>
-                            <div class="response-success-container" style="display:none" id="success">
+                            <div class="response-success-container" style="display:none" id="successEidtor">
                                 <div class="response-top-bar">
-                                    <div class="response-status">
+                                    <!-- <div class="response-status">
                                         <span class="label label-default">STATUS</span>
                                         <span id="status"></span>
                                     </div>
                                     <div class="response-time">
                                         <span class="label label-default">TIME</span>
                                         <span id="time">63 ms</span>
+                                    </div> -->
+                                    <div class="response-edit r">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </div>
+                                    <div class="response-edit r">
+                                        <span class="glyphicon glyphicon-pencil"></span>
                                     </div>
                                 </div>
-                                <div class="response-preview-container" id="editor" style="border:1px solid #ccc"><%= data %></div>
+                                <div class="response-preview-container" id="editor"></div>
                             </div>
+                            <div class="response-preview-table-container" style="display: none;" id="successTable">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Author</th>
+                                        <th>Story</th>
+                                        <th class="table-description">Description</th>
+                                        <th class="table-edit ellipsis">Edit</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
                             <div class="response-failed-container" style="display:none" id="failed">
                                 <h3>Could not get any response</h3>
                                 <p>
@@ -166,61 +181,6 @@
                         </div>
                     </div>
 
-                    <div id="update" class="tab-pane">
-                        <div class="create-container">
-                            <div class="form-group form-url">
-                                <label for="url" class="control-label">Url<span class="required">*</span></label><span class="err-msg"></span>
-                                <ul class="create-url">
-                                    <li class='url-item'>
-                                        <div class="form-inline form-width url-control">
-                                            <input type="text" class="form-control" placeholder="Home" id="url">
-                                            <button class="btn" id="addUrl">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-                                            <button id="urlTooptip" class="btn" data-toggle="tooltip" title="No data" data-placement="right">Preview</button>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="form-group">
-                                <label for="author" class="control-label">Author</label>
-                                <input type="text" class="form-control form-width" id="author" value="songjunke" disabled>
-                            </div>
-                            <div class="form-group form-story">
-                                <label for="story" class="control-label">Story</label><span class="err-msg"></span>
-                                <input type="number" class="form-control form-width" id="story" placeholder="Story" min="1">
-                            </div>
-                            <div class="form-group">
-                                <label for="description" class="control-label">Description</label>
-                                <textarea class="form-control form-width" id="description" placeholder="Description" rows="3"></textarea>
-                            </div>
-                            <div class="form-group form-parameter">
-                                <label for="description" class="control-label">Parameters</label><span class="err-msg"></span>
-                                <ul class="create-parameters">
-                                    <li class='parameters-item'>
-                                        <div class="form-inline form-width">
-                                            <input type="text" class="form-control" name="parameter" placeholder="Parameter">
-                                            <input type="text" class="form-control" name="description" placeholder="Description">
-                                            <button class="btn" id="add">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="form-group form-response">
-                                <label class="control-label">Response<span class="required">*</span></label><span class="err-msg"></span>
-                                <div class="create-editor-container" id="updateEditor"></div>
-                            </div>
-                        </div>
-
-                        <div class="request-actions">
-                            <div class="request-actions-primary">
-                                <button class="btn btn-primary" data-loading-text="Submit" id="updateSubmit">Update</button>
-                                <button class="btn btn-danger" id="updateCancel">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
                     <div id="delete" class="tab-pane">delete</div>
 
                     <div id="other" class="tab-pane">other</div>
@@ -235,7 +195,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close close-modal success-dialog-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="gridSystemModalLabel">Success</h4>
             </div>
             <div class="modal-body">
@@ -249,18 +209,18 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default close-modal success-dialog-close" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- 添加成功后的modal-dialog -->
+<!-- 添加失败后的modal-dialog -->
 <div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" id="failedDialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close close-modal success-dialog-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="gridSystemModalLabel">Failed</h4>
             </div>
             <div class="modal-body">
@@ -277,6 +237,30 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default close-modal success-dialog-close" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 点击编辑时的弹框 -->
+<div class="modal fade edit-dialog" role="dialog" id="editDialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Edit</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row edit-editor-container" id="editEditor"></div>
+                    <div class="row">
+                        <span class="err-msg"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="commit">Commit</button>
                 <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->

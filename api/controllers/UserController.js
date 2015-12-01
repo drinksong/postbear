@@ -6,9 +6,8 @@
  */
 
 module.exports = {
-    saveConfig: function (req, res) {
-        var config = req.param('config');
-        //user.update(config)
+	saveConfig: function (req, res) {
+
     }
 };
 

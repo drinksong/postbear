@@ -11,8 +11,8 @@
 module.exports = {
     index: function (req, res) {
         res.view('main/index', {
-            layout: 'main/layout',
-            data: ''
+            layout: 'main/layout'
+            //data: {}
         });
     },
 
@@ -30,6 +30,9 @@ module.exports = {
             }
             else {
                 if (result) {
+                    if (result.length > 1) {
+
+                    }
                     res.json(result);
                 }
                 else {
@@ -102,30 +105,22 @@ module.exports = {
      * @param req
      * @param res
      */
-    // update: function (req, res) {
-    //     var name = req.param('name');
-    //     console.log(name);
+     update: function (req, res) {
+         var author = req.param('author');
+         //var id = req.param('id');
+         //var id = req.param('id');
+         //var id = req.param('id');
+         //var id = req.param('id');
+         //var id = req.param('id');
 
-    //     Interface.update({name: 'sjk'}, {name: name}).exec(function (err, updated) {
-    //         if (err) {
-    //             res.send({err: err});
-    //         }
-    //         else {
-    //             res.send('Updated the id:sjk ' + ' to ' + updated[0].name);
-    //         }
-    //     })
-    // }
-
-    update: function (req, res) {
-        var id = req.param('id');
-        Interface.update({url: 'activation/f'}, {url: 'activation/a'}).where({id: 6}).exec(function (err, results) {
-            if (err) {
-                res.send({err: err});
-            }
-            else {
-                res.send(results);
-            }
-        });
-    }
+         Interface.update({author: author}, {author: 'zhangsan'}).exec(function (err, updated) {
+             if (err) {
+                 res.send({err: err});
+             }
+             else {
+                 res.send('Updated the id:sjk ' + ' to ' + updated[0].name);
+             }
+         })
+     }
 };
 

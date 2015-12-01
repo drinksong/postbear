@@ -41,18 +41,33 @@ module.exports.routes = {
   
 '/': 'InterfaceController.index',
 
-'/welcome': {
-    view: 'home/welcome',
+'get /login': {
+    view: 'passport/login',
     locals: {
-        layout: 'home/layout'
+        layout: 'passport/layout'
     }
 },
 
-'/search': 'InterfaceController.search',
+//'post /register': 'AuthController.processLogin',
 
-'/create': 'InterfaceController.create',
+'get /register': {
+    view: 'passport/register',
+    locals: {
+        layout: 'passport/layout'
+    }
+},
 
+'post /register': 'AuthController.processRegister',
+
+// 查询接口
+'get /search': 'InterfaceController.search',
+
+// 新增接口
+'get /create': 'InterfaceController.create',
+
+// 更新接口
 'get /update': 'InterfaceController.update'
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -62,4 +77,5 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
 };
