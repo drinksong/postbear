@@ -51,14 +51,18 @@ module.exports.routes = {
 
 'post /register': 'AuthController.processRegister',
 
-// 查询接口
+// 鏌ヨ
 'get /search': 'InterfaceController.search',
 
-// 新增接口
+// 鏂板
 'get /create': 'InterfaceController.create',
 
-// 更新接口
-'get /updateRecord': 'InterfaceController.updateRecord'
+// 鏇存柊
+'get /updateRecord': 'InterfaceController.updateRecord',
+
+// 鍒犻櫎
+'get /deleteRecord': 'InterfaceController.deleteRecord'
+
 
   /***************************************************************************
   *                                                                          *

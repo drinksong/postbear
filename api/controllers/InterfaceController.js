@@ -101,6 +101,24 @@ module.exports = {
     },
 
     /**
+     * 根据'id'删除
+     * @param req
+     * @param res
+     */
+    deleteRecord: function (req, res) {
+        var id = req.param('id');
+
+        Interface.destroy({timestamp: id}).exec(function (err) {
+            if (err) {
+                res.send({success: false});
+            }
+            else {
+                res.send({success: true});
+            }
+        });
+    },
+
+    /**
      * 更新接口数据
      * @param req
      * @param res

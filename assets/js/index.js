@@ -159,7 +159,7 @@ function countDown(elm ,count) {
         +        '<div class="response-edit l"  data-responses="<%= data[i] %>" data-id="<%= timestamp %>">'
         +            '<span class="glyphicon glyphicon-pencil"></span>'
         +        '</div>'
-        +        '<div class="response-edit l">'
+        +        '<div class="response-edit l" data-id="<%= timestamp %>">'
         +            '<span class="glyphicon glyphicon-trash"></span>'
         +        '</div>'
         +    '</td>'
@@ -206,6 +206,7 @@ function countDown(elm ,count) {
 		}, 'json');
 	});
 
+    // handle click event for edit
     $('.response-preview').on('click', '.glyphicon-pencil', function (e) {
         $('#editDialog').modal();
         var $commit = $('#commit');
@@ -236,6 +237,7 @@ function countDown(elm ,count) {
         }
     });
 
+    // handle click event for view
 	$('.response-preview').on('click', '.glyphicon-eye-open', function (e) {
 		$('#editDialog').modal();
         var $commit = $('#commit');
@@ -261,6 +263,32 @@ function countDown(elm ,count) {
 
 	});
 
+    // handle click event for delete
+    $('.response-preview').on('click', '.glyphicon-trash', function (e) {
+        if (confirm('Are you ABSOLUELY sure?')) {
+
+            if (!GLOBAL.id) {
+                var target = e.target;
+                var targetTd = $(target).closest('div');
+
+                GLOBAL.id = $(targetTd).attr('data-id');
+            }
+
+            $.get('/deleteRecord', 'id=' + GLOBAL.id, function (data) {
+                var count = 5;
+                
+                if (data.success) {
+                    $('#successDialog').modal();
+                    countDown('count', count);
+                }
+                else {
+                    $('#failedDialog').modal();
+                    countDown('count', count);
+                }
+            }, 'json');
+        }
+    });
+
 	// commit
 	$('#commit').click(function () {
 		var editContent = GLOBAL.editEditor.getValue();
@@ -280,6 +308,7 @@ function countDown(elm ,count) {
 				//console.log($.parseJSON(GLOBAL.editEditor.getValue()));
                 var newObject = $.parseJSON(GLOBAL.editEditor.getValue());
                 var count = 5;
+
                 newObject.timestamp = GLOBAL.id;
                 $.get('/updateRecord', newObject, function (data) {
                     if (data.success) {
