@@ -31,15 +31,13 @@ module.exports = {
         parameters: 'json',
 
         // responses
-        responses: 'json'
+        responses: 'json',
 
-        //toJSON: function() {
-        //    var obj = this.toObject();
-        //    delete obj.id;
-        //    delete obj.author;
-        //    delete obj.story;
-        //    return obj;
-        //}
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.id;
+            return obj;
+        }
     }
 };
 

@@ -155,8 +155,8 @@ function countDown(elm ,count) {
         +            '<span class="glyphicon glyphicon-eye-open"></span>'
         +        '</div>'
         +    '<% data[i].responses = JSON.parse(data[i].responses); %>'
-        +    '<% var id = data[i].id; delete data[i].id; data[i] = JSON.stringify(data[i]); %>'
-        +        '<div class="response-edit l"  data-responses="<%= data[i] %>" data-id="<%= id %>">'
+        +    '<% var timestamp = data[i].timestamp; delete data[i].timestamp; data[i] = JSON.stringify(data[i]); %>'
+        +        '<div class="response-edit l"  data-responses="<%= data[i] %>" data-id="<%= timestamp %>">'
         +            '<span class="glyphicon glyphicon-pencil"></span>'
         +        '</div>'
         +        '<div class="response-edit l">'
@@ -183,10 +183,13 @@ function countDown(elm ,count) {
 			if (data.length) {
                 if (data.length === 1) {
                     $('#successEidtor').show();
-                    GLOBAL.id = data[0].id;
-                    delete data[0].id;
+                    GLOBAL.id = data[0].timestamp;
+                    delete data[0].timestamp;
                     GLOBAL.data = stringifyJSON(data[0]);
-                    editor.setValue(GLOBAL.data);
+
+                    var responses = stringifyJSON(data[0].responses);
+
+                    editor.setValue(responses);
                 }
 				else {
                     $('#successTable').show();
@@ -196,7 +199,6 @@ function countDown(elm ,count) {
 
                     $('.table tbody').empty().append(html);
                 }
-				// $('#status').html(xhr.status + ' ' + xhr.statusText);
 			}
 			else {
 				$('#failed').show();
@@ -229,7 +231,6 @@ function countDown(elm ,count) {
             var responses = $(targetTd).attr('data-responses');
 
             GLOBAL.id = $(targetTd).attr('data-id');
-            console.log(GLOBAL.id);
             responses = stringifyJSON(responses);
             GLOBAL.editEditor.setValue(responses);
         }
@@ -264,7 +265,6 @@ function countDown(elm ,count) {
 	$('#commit').click(function () {
 		var editContent = GLOBAL.editEditor.getValue();
         editContent = editContent.replace(/\s/g, '');
-        //console.log(editContent);return;
 
 		if (!editContent || editContent === '{}') {
 			$('.edit-dialog .err-msg').html('Responses must be required');
@@ -279,13 +279,18 @@ function countDown(elm ,count) {
 			else {
 				//console.log($.parseJSON(GLOBAL.editEditor.getValue()));
                 var newObject = $.parseJSON(GLOBAL.editEditor.getValue());
-                newObject.id = GLOBAL.id;
-                $.get('/update', newObject, function (data) {
-                    if (data) {
-
+                var count = 5;
+                newObject.timestamp = GLOBAL.id;
+                $.get('/updateRecord', newObject, function (data) {
+                    if (data.success) {
+                        $('#editDialog').modal('hide');
+                        $('#successDialog').modal();
+                        countDown('count', count);
                     }
                     else {
-
+                        $('#editDialog').modal('hide');
+                        $('#failedDialog').modal();
+                        countDown('count', count);
                     }
                 }, 'json');
 			}
@@ -336,13 +341,16 @@ function countDown(elm ,count) {
 		if (validate()) {
 			var $btn = $(this).button('loading');
             var count = 5;
+            var timestamp = new Date().getTime();
+
 			$.get('/create', {
 				url: GLOBAL.url,
 				author: GLOBAL.author,
 				story: GLOBAL.story,
 				description: GLOBAL.description || '暂无描述信息',
 				parameters: GLOBAL.parameters,
-				responses: GLOBAL.responses
+				responses: GLOBAL.responses,
+                timestamp: timestamp
 			}, function (data) {
 				if (data.success) {
 					$('#successDialog').modal();

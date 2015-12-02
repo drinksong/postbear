@@ -105,22 +105,30 @@ module.exports = {
      * @param req
      * @param res
      */
-     update: function (req, res) {
-         var author = req.param('author');
-         //var id = req.param('id');
-         //var id = req.param('id');
-         //var id = req.param('id');
-         //var id = req.param('id');
-         //var id = req.param('id');
+    updateRecord: function (req, res) {
+        var newRecord = req.allParams();
+        var timestamp = req.param('timestamp');
 
-         Interface.update({author: author}, {author: 'zhangsan'}).exec(function (err, updated) {
-             if (err) {
-                 res.send({err: err});
-             }
-             else {
-                 res.send('Updated the id:sjk ' + ' to ' + updated[0].name);
-             }
-         })
-     }
+        Interface.findOne({timestamp: timestamp}).exec(function (err, result) {
+            if (err) {
+                return null;
+            }
+
+            for (var p in newRecord) {
+                if (newRecord.hasOwnProperty(p)) {
+                    result[p] = newRecord[p];
+                }
+            }
+
+            result.save(function (err, s) {
+                if (err) {
+                    res.send({success: false});
+                }
+                else {
+                    res.send({success: true});
+                }
+            });
+        });
+    }
 };
 

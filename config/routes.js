@@ -32,12 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  // '/': {
-  //   view: 'index',
-  //   locals: {
-  //     layout: 'partial/layout'
-  //   }
-  // },
   
 '/': 'InterfaceController.index',
 
@@ -47,8 +41,6 @@ module.exports.routes = {
         layout: 'passport/layout'
     }
 },
-
-//'post /register': 'AuthController.processLogin',
 
 'get /register': {
     view: 'passport/register',
@@ -66,7 +58,7 @@ module.exports.routes = {
 'get /create': 'InterfaceController.create',
 
 // 更新接口
-'get /update': 'InterfaceController.update'
+'get /updateRecord': 'InterfaceController.updateRecord'
 
   /***************************************************************************
   *                                                                          *
